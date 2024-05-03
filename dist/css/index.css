@@ -1,6 +1,49 @@
 @charset "UTF-8";
-html {
+.font {
   font-family: "Montserrat", sans-serif;
+}
+
+.home-newsletter {
+  padding: 80px 0;
+  background: #9ebef5;
+  color: #333333;
+}
+
+.home-newsletter .content {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.home-newsletter .content h2, .home-newsletter .content .h2 {
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.home-newsletter .content .form-control {
+  height: 50px;
+  background: rgba(255, 255, 255, 0.6);
+  border-color: transparent;
+  border-radius: 20px 0 0 20px;
+}
+
+.home-newsletter .content .form-control:focus {
+  box-shadow: none;
+  border-color: #28599a;
+}
+
+.home-newsletter .content .btn {
+  min-height: 50px;
+  border-radius: 0 20px 20px 0;
+  background: #28599a;
+  color: #fff;
+}
+
+.carousel-inner {
+  max-height: 650px;
 }
 
 /*!
