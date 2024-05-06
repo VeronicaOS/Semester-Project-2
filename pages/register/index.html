@@ -36,42 +36,85 @@
 
     <!-- REGISTRATION FORM -->
 
-    <section class="vh-100">
+    <section class="h-100">
         <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6 px-0 d-none d-sm-block">
                 <img src="../../img/register.jpg"
-                  alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                  alt="" class="w-100 h-100">
               </div>
-            <div class="col-sm-6 text-dark">
+            <div class="h-100 col-sm-6 text-dark">
       
               <div class="px-5 pt-5 ms-xl-4">
                 <i class="fa fa-5x fa-cloud text-primary" aria-hidden="true"></i>
               </div>
       
-              <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+              <div class="h-100 d-flex align-items-center h-custom-2 px-5 mt-5 ms-xl-4 pt-xl-0 mt-xl-n5">
       
-                <form style="width: 23rem;">
+                <form>
       
-                  <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Register</h3>
+                  <h3 class="fw-normal mb-3 pb-3">Register</h3>
       
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <label class="form-label" for="form2Example18">Name</label>
-                    <input type="email" id="form2Example18" class="form-control form-control-lg" />
+                    <label class="form-label" for="name-input">Full name</label>
+                    <input 
+                        type="text" 
+                        name="name"
+                        id="name-input" 
+                        required
+                        pattern="^[\w]+$"
+                        title="Must only contain lower and upper case letters, numbers and underscore (_). Example: My_user123"
+                        class="form-control form-control-lg" 
+                    />
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <label class="form-label" for="form2Example18">Email address</label>
-                    <input type="email" id="form2Example18" class="form-control form-control-lg" />
+                    <label class="form-label" for="banner-input">Banner</label>
+                    <input
+                        type="url"
+                        name="banner"
+                        id="banner-input"
+                        class="form-control"
+                    />
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="avatar-input">Avatar</label>
+                    <input
+                        type="url"
+                        name="avatar"
+                        id="avatar-input"
+                        class="form-control"
+                    />
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="email-input">Email address</label>
+                    <input 
+                        type="text"
+                        name="email"
+                        id="email-input" 
+                        required
+                        pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+                        title="only @(stud)noroff.no domains are allowed to register."
+                        class="form-control form-control-lg" 
+                    />
                   </div>
       
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <label class="form-label" for="form2Example28">Password</label>
-                    <input type="password" id="form2Example28" class="form-control form-control-lg" />
+                    <label class="form-label" for="password-input">Password</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        id="password-input"
+                        required
+                        minlength="8" 
+                        class="form-control form-control-lg" 
+                    />
                   </div>
       
                   <div class="pt-1 mb-4">
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-secondary btn-lg btn-block" type="button">Login</button>
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-secondary btn-lg btn-block" type="button">Register</button>
                   </div>
       
                   <p>Want to go back to the log in page? <a href="../login/index.html" class="link-primary">Click here</a></p>
