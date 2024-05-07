@@ -14,62 +14,247 @@
     <link rel="stylesheet" href="../../dist/css/index.css">
   </body>
 </head>
-<body class="">
-    <header>
-        <nav class="navbar navbar-expand-lg border-bottom border-customgrey p-4">
-            <div class="container-fluid">
-              <a class="text-decoration-none display-6 text-primary" href="#">BidStorm</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse mt-4 mt-lg-0" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto gap-2">
-                  <li class="nav-item">
-                    <a class="nav-link d-md-block d-lg-none" href="#">HOW IT WORKS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link d-md-block d-lg-none" href="#">ABOUT</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link d-md-block d-lg-none" href="#">CONTACT</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link d-md-block d-lg-none" href="#">SELL</a>
-                  </li>
-                </ul>
-                <form class="d-flex input-group w-25 mt-3 mt-lg-0" role="search">
-                  <input class="form-control" type="search" aria-label="Search">
-                  <button class="btn btn-outline-primary" type="submit">Search</button>
-                </form>
-                <div class="ms-lg-4 mt-4 mt-lg-0"><a class="nav-link" href="#" aria-disabled="true">LOG IN</a></div>
-              </div>
-            </div>
-          </nav>
+<body>
+  <header>
 
-          <nav class="navbar navbar-expand-lg d-none d-lg-block">
-            <div class="container-fluid justify-content-center">
-                <div class="navbar-nav gap-4">
-                  <a class="nav-link" href="#">HOW IT WORKS</a>
-                  <a class="nav-link" href="#">ABOUT</a>
-                  <a class="nav-link" href="#">CONTACT</a>
-                  <a class="nav-link" href="#">SELL</a>
-                </div>
+    <!-- MAIN NAVBAR -->
+
+      <nav class="navbar navbar-expand-lg border-bottom border-customgrey p-4">
+          <div class="container-fluid">
+            <a class="text-decoration-none display-6 text-primary" href="../../index.html">BidStorm</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mt-4 mt-lg-0" id="navbarTogglerDemo02">
+              <ul class="navbar-nav me-auto gap-2">
+                <li class="nav-item">
+                  <a class="nav-link d-md-block d-lg-none" href="#">HOW IT WORKS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-md-block d-lg-none" href="#">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-md-block d-lg-none" href="../listings/index.html">AUCTIONS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-md-block d-lg-none" href="../listings/createListing/index.html">SELL</a>
+                </li>
+              </ul>
+              <form class="d-flex input-group w-25 mt-3 mt-lg-0" role="search">
+                <input class="form-control" type="search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+              </form>
+              <div class="ms-lg-4 mt-4 mt-lg-0"><a class="nav-link" href="../login/index.html" aria-disabled="true">LOG IN</a></div>
             </div>
-          </nav>
-    </header>
-    <main></main>
-    <footer class="pt-5 bg-light">
+          </div>
+        </nav>
+
+        <!-- SECOND NAVBAR -->
+        
+        <nav class="navbar navbar-expand-lg d-none d-lg-block bg-secondary">
+          <div class="container-fluid justify-content-center">
+            <div class="navbar-nav gap-4">
+              <a class="nav-link" href="#">HOW IT WORKS</a>
+              <a class="nav-link" href="#">ABOUT</a>
+              <a class="nav-link" href="../listings/index.html">AUCTIONS</a>
+              <a class="nav-link" href="../listings/createListing/index.html">SELL</a>
+            </div>
+          </div>
+        </nav>
+
+      </header>
+  <main>
+    <div class="d-flex justify-content-end me-5 pe-5 pt-5">
+      <div class="dropdown">
+      <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort by
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Newest</a></li>
+        <li><a class="dropdown-item" href="#">Oldest</a></li>
+        <li><a class="dropdown-item" href="#">A-Z</a></li>
+        <li><a class="dropdown-item" href="#">Z-A</a></li>
+      </ul>
+    </div>
+    </div>
+    
+
+  <!-- LISTINGS -->
+    <section class="py-5">
+      <div class="container px-4 px-lg-5 mt-5">
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+              <div class="col mb-5">
+                  <div class="card h-100">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+                              <!-- Product name-->
+                              <h5 class="fw-bolder">Fancy Product</h5>
+                              <!-- Product price-->
+                              <p>Ends in: 2 days</p>
+                          </div>
+                      </div>
+                      <!-- Product actions-->
+                      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                          <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col mb-5">
+                <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product price-->
+                          <p>Ends in: 2 days</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-5">
+                <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product price-->
+                          <p>Ends in: 2 days</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-5">
+                <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product price-->
+                          <p>Ends in: 2 days</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-5">
+                <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product price-->
+                          <p>Ends in: 2 days</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-5">
+                <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product price-->
+                          <p>Ends in: 2 days</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-5">
+                <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product price-->
+                          <p>Ends in: 2 days</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-5">
+                <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="../../img/jewlery.jpg" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product price-->
+                          <p>Ends in: 2 days</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  </main>
+  <footer class="pt-5 bg-light">
+      <!-- BIDSTORM -->
         <div class="row container-fluid justify-content-center">
           <div class="col-6 col-md-2 mb-3">
             <h5>BidStorm</h5>
             <ul class="nav flex-column">
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contact</a></li>
+              <li class="nav-item mb-2"><a href="../listings/index.html" class="nav-link p-0 text-muted">Auctions</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">How it works</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Sell</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
+              <li class="nav-item mb-2"><a href="../listings/createListing/index.html" class="nav-link p-0 text-muted">Sell</a></li>
             </ul>
           </div>
+
+          <!-- FOLLOW -->
     
           <div class="col-6 col-md-2 mb-3">
             <h5>Follow us</h5>
@@ -86,6 +271,8 @@
                 </div>
             </div>        
           </div>
+
+          <!-- MORE -->
     
           <div class="col-6 col-md-2 mb-3">
             <h5>More</h5>
@@ -97,6 +284,8 @@
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Cookies</a></li>
             </ul>
           </div>
+
+          <!-- RIGHTS -->
     
         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 border-top">
           <p class="m-0">© 2022 BidStorm, Inc. All rights reserved.</p>
