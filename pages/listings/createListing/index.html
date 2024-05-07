@@ -51,7 +51,7 @@
 
         <!-- SECOND NAVBAR -->
         
-        <nav class="navbar navbar-expand-lg d-none d-lg-block">
+        <nav class="navbar navbar-expand-lg d-none d-lg-block bg-secondary">
           <div class="container-fluid justify-content-center">
             <div class="navbar-nav gap-4">
               <a class="nav-link" href="#">HOW IT WORKS</a>
@@ -63,9 +63,68 @@
         </nav>
 
       </header>
-  <main>
+  <main class="p-5 m-5">
 
-  </main>
+    <div class="container px-5 mx-5 border-primary">
+
+      <div class="px-5 mx-5">
+
+        <form class="px-5 mx-5 w-75">
+          
+          <h3 class="fw-normal mb-3 pb-3">What do you want to sell?</h3>
+          
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="title-input">Title</label>
+            <input 
+            type="text" 
+            name="title"
+            id="title-input" 
+            required
+            class="form-control form-control-lg" 
+            />
+          </div>
+          
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="description-input">Description</label>
+            <textarea 
+            type="text" 
+            name="description"
+            id="description-input" 
+            class="form-control form-control-lg" 
+            ></textarea>
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="title-input">Image URL</label>
+            <input 
+            type="url" 
+            name="title"
+            id="title-input" 
+            required
+            class="form-control form-control-lg" 
+            />
+          </div>
+          
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="end-date">End date:</label>
+            <input 
+            type="date"
+            name="trip-start"
+            id="end-date"
+            required 
+            class="form-control form-control-lg" 
+            />
+          </div>
+          
+          <div class="pt-1 mb-4">
+            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-secondary btn-lg btn-block" type="button">Sell</button>
+          </div>
+          
+        </form>
+        </div>
+      </div>
+      
+    </main>
   <footer class="pt-5 bg-light">
       <!-- BIDSTORM -->
         <div class="row container-fluid justify-content-center">
