@@ -10,7 +10,8 @@
     <script
             src="https://kit.fontawesome.com/5b97174c12.js"
             crossorigin="anonymous"
-        ></script>
+    ></script>
+    <script type="module" src="../../js/pages/profile.mjs"></script>
     <link rel="stylesheet" href="../../dist/css/index.css">
   </body>
 </head>
@@ -51,7 +52,7 @@
 
         <!-- SECOND NAVBAR -->
         
-        <nav class="navbar navbar-expand-lg d-none d-lg-block">
+        <nav class="bg-secondary navbar navbar-expand-lg d-none d-lg-block">
           <div class="container-fluid justify-content-center">
             <div class="navbar-nav gap-4">
               <a class="nav-link" href="#">HOW IT WORKS</a>
@@ -65,13 +66,13 @@
   </header>
       
   <main>
-    <div class="bg-secondary py-5">
+    <div class="py-5">
       <div class="container mt-4 p-3 d-flex justify-content-center"> 
-        <div class="card w-50 p-4 mb-4"> 
+        <div class="bg-light card w-50 p-4 mb-4"> 
           <div class="d-flex flex-column justify-content-center align-items-center"> 
             <div class="profile-img">
 
-              <img src="../../img/necklace.jpg" class=" rounded-circle img-fluid" />
+              <img class="rounded-circle img-fluid" id="profile-avatar" />
               
             </div>
             <!-- Button trigger modal -->
@@ -88,27 +89,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <div data-mdb-input-init class="form-outline mb-4 w-75">
-                      <label class="form-label" for="avatar-input">Link to profile image</label>
-                      <input
-                          type="url"
-                          name="avatar"
-                          id="avatar-input"
-                          class="form-control"
-                      />
-                    </div>
+                    <form id="avatar-form">
+                      <div data-mdb-input-init class="form-outline mb-4 w-75">
+                        <label class="form-label" for="avatar-input">Link to profile image</label>
+                        <input
+                            type="url"
+                            name="avatar"
+                            id="avatar-input"
+                            class="form-control"
+                        />
+                      </div>
+                    </form>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-secondary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" id="save-avatar">Save changes</button>
                   </div>
                 </div>
               </div>
             </div>
-            <span class="name mt-3">John Doe</span> 
+            <span class="name mt-3" id="profile-name"></span> 
             <span class="idd">email</span> 
             <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
-              <span>Credits: <span>398</span></span> 
+              <span>Credits: <span id="profile-credit"></span></span> 
             </div> 
 
             <div class="text mt-3"> 
@@ -125,8 +128,8 @@
         </div>
       </div>
     </div>
-      
     </main>
+
   <footer class="pt-5 bg-light">
     <!-- BIDSTORM -->
       <div class="row container-fluid justify-content-center">

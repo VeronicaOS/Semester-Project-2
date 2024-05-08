@@ -1,8 +1,4 @@
 @import "./variables.scss";
 @import "./custom.scss";
-@import "./font.scss";
 @import "../node_modules/bootstrap/scss/bootstrap";
-
-:root {
-    --bs-body-font-family: "Monsterrat", sans-serif;
-}
+@import "./font.scss";
