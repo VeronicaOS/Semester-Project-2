@@ -2,8 +2,6 @@ import { API_KEY, load, BASE_URL } from "../api/constants.mjs";
 
 const user = load("profile");
 
-console.log(user);
-
 let params = new URLSearchParams(window.location.search);
 let name = params.get("name");
 
@@ -38,6 +36,10 @@ profileAvatar.src = profileData.avatar.url;
 profileAvatar.alt = profileData.avatar.alt;
 
 document.getElementById("profile-credit").textContent = profileData.credits;
+
+document.getElementById("profile-bio").textContent = profileData.bio;
+
+document.getElementById("profile-email").textContent = profileData.email;
 
 // Change avatar
 
