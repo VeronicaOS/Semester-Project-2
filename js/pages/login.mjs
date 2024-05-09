@@ -37,7 +37,7 @@ async function logInRequest(body) {
         })
         .catch((reject) => {
             wrongLogin.classList.remove("d-none");
-            wrongLogin.style.color = "green";
+            wrongLogin.style.color = "red";
             wrongLogin.style.fontSize = "large";
         });
 }
