@@ -1,4 +1,9 @@
 import { API_KEY, load, BASE_URL } from "../api/constants.mjs";
+import { header } from "../utils/index.mjs";
+
+document.addEventListener("DOMContentLoaded", function () {
+    header();
+});
 
 const user = load("profile");
 
@@ -40,35 +45,3 @@ document.getElementById("profile-credit").textContent = profileData.credits;
 document.getElementById("profile-bio").textContent = profileData.bio;
 
 document.getElementById("profile-email").textContent = profileData.email;
-
-// Change avatar
-
-
-// async function editAvatar(user, avatar) {
-//     const endpoint = `/auction/profiles/${user}`;
-//     const url = BASE_URL + endpoint;
-//     const method = "put";
-//     const headers = {
-//         "Content-type": "application/json; charset=UTF-8",
-//         Authorization: `Bearer ${load("token")}`,
-//         "X-Noroff-API-Key": API_KEY,
-//     };
-
-//     const request = await fetch(url, {
-//         headers: headers,
-//         method: method,
-//         body: JSON.stringify({
-//             avatar: avatar,
-//         }),
-//     })
-//         .then((response) => response.json())
-//         .then(async (json) => {
-//             window.location.href = `/pages/profile/?id=${user.avatar}`;
-//         });
-// }
-
-// const save = document.getElementById("save-avatar");
-// save.addEventListener("click", function (event) {
-//     const avatar = document.getElementById("avatar-input");
-//     editAvatar(user, avatar.value);
-// });

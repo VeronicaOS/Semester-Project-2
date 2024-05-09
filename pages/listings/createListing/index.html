@@ -11,6 +11,7 @@
             src="https://kit.fontawesome.com/5b97174c12.js"
             crossorigin="anonymous"
         ></script>
+    <script type="module" src="../../../js/pages/createListing.mjs"></script>
     <link rel="stylesheet" href="../../../dist/css/index.css">
   </body>
 </head>
@@ -44,7 +45,11 @@
                 <input class="form-control" type="search" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
               </form>
-              <div class="ms-lg-4 mt-4 mt-lg-0"><a class="nav-link" href="../../login/index.html" aria-disabled="true">LOG IN</a></div>
+              <div class="nav-profile ms-lg-4" id="navProfile">
+                <a id="nav-name" class="text-decoration-none text-dark pe-1" href="../../profile/index.html"></a>
+                <img class="img-fluid rounded-circle" id="nav-img" alt=""></div>
+              <div class="ms-lg-2 mt-4 mt-lg-0"><a class="btn" href="../../login/index.html" id="loginButton" type="submit">LOG IN</a></div>
+              <div class="ms-lg-2 mt-4 mt-lg-0"><button class="btn" id="logoutButton">LOG OUT</button></div>
             </div>
           </div>
         </nav>
@@ -69,7 +74,7 @@
 
       <div class="px-5 mx-5">
 
-        <form class="px-5 mx-5 w-75">
+        <form id="listingForm" class="px-5 mx-5 w-75">
           
           <h3 class="fw-normal mb-3 pb-3">What do you want to sell?</h3>
           
@@ -95,11 +100,11 @@
           </div>
 
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="title-input">Image URL</label>
+            <label class="form-label" for="media-input">Image URL</label>
             <input 
             type="url" 
             name="title"
-            id="title-input" 
+            id="media-input" 
             required
             class="form-control form-control-lg" 
             />
@@ -117,7 +122,7 @@
           </div>
           
           <div class="pt-1 mb-4">
-            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-secondary btn-lg btn-block" type="button">Sell</button>
+            <button id="publish-btn" data-mdb-button-init data-mdb-ripple-init class="btn btn-secondary btn-lg btn-block" type="button">Sell</button>
           </div>
           
         </form>

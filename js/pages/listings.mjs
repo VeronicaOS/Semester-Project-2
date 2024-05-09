@@ -1,5 +1,12 @@
 import { API_KEY, load, BASE_URL } from "../api/constants.mjs";
+import { header } from "../utils/index.mjs";
 
+document.addEventListener("DOMContentLoaded", function () {
+    header();
+});
+
+const user = load("profile");
+console.log(user);
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const searchTerm = urlParams.get("search");
@@ -50,6 +57,12 @@ function renderListing(listing) {
     if (listing.media.length > 0) {
         media = `<img class="card-img-top img-fluid" src=${listing.media[0].url} alt=${listing.media[0].alt}/>`;
     }
+    let footer = "";
+    if (user) {
+        footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
+    </div>`;
+    }
     const template = `<div class="col mb-5">
         <div class="card">
         <div class="img-height">${media}</div>
@@ -59,9 +72,7 @@ function renderListing(listing) {
                 <p>Ends: ${curDate}</p>
             </div>
         </div>
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html">Make a bid</a></div>
-        </div>
+        ${footer}
     </div>
   </div>`;
     return template;
