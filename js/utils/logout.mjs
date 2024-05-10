@@ -1,4 +1,4 @@
-import { changeHeader } from "./buttonProfile.mjs";
+import { changeHeader } from "./changeHeader.mjs";
 
 export function handleLogout() {
     const logoutButton = document.getElementById("logoutButton");
@@ -14,7 +14,7 @@ export function handleLogout() {
         localStorage.removeItem("token");
         localStorage.removeItem("profile");
 
-        changeHeader();
+        // changeHeader();
 
         window.location.href = "/";
     });

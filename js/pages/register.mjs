@@ -1,9 +1,3 @@
-import { header } from "../utils/index.mjs";
-
-document.addEventListener("DOMContentLoaded", function () {
-    header();
-});
-
 const registerForm = document.getElementById("register-form");
 const nameInput = document.getElementById("name-input");
 const emailInput = document.getElementById("email-input");

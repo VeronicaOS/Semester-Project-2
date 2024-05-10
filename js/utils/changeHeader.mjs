@@ -7,8 +7,8 @@ const sellButton = document.getElementById("sell-btn");
 const sellNav = document.getElementById("sell-nav");
 
 export async function changeHeader() {
-    const token = await localStorage.getItem("token");
-    const profileData = await localStorage.getItem("profile");
+    const token =  localStorage.getItem("token");
+    const profileData =  localStorage.getItem("profile");
     const profile = JSON.parse(profileData);
     if (token && profile) {
         navName.textContent = profile.name;
@@ -25,7 +25,7 @@ export async function changeHeader() {
     } else {
         console.log(sellButton);
         if (loginButton) {
-            loginButton.style.display = "block";
+            loginButton.classList.remove("d-none");
         }
         if (logoutButton) {
             logoutButton.style.display = "none";

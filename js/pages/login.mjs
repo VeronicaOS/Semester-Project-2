@@ -1,9 +1,3 @@
-import { header } from "../utils/index.mjs";
-
-document.addEventListener("DOMContentLoaded", function () {
-    header();
-});
-
 const logInForm = document.getElementById("login-form");
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
