@@ -85,6 +85,18 @@ listings.forEach((listing) => {
     listingsContainer.innerHTML += renderListing(listing);
 });
 
+// save scroll
+
+var $window = $(window)
+
+/* Restore scroll position */
+window.scroll(0, localStorage.getItem('scrollPosition')|0)
+
+/* Save scroll position */
+$window.scroll(function () {
+	localStorage.setItem('scrollPosition', $window.scrollTop())
+})
+
 // const sorting = document.getElementById("sort-by");
 // sorting.addEventListener("change", function (event) {
 //     const value = event.target.value;

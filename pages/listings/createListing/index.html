@@ -42,7 +42,7 @@
                 </li>
               </ul>
               <form class="d-flex input-group w-25 mt-3 mt-lg-0" role="search">
-                <input class="form-control" type="search" aria-label="Search">
+                <input id="search" class="form-control" type="search" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
               </form>
               <div class="nav-profile ms-lg-4" id="navProfile">
@@ -97,6 +97,17 @@
             id="description-input" 
             class="form-control form-control-lg" 
             ></textarea>
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="media-input">Image URL</label>
+            <input 
+            type="url" 
+            name="title"
+            id="media-input" 
+            required
+            class="form-control form-control-lg" 
+            />
           </div>
 
           <div data-mdb-input-init class="form-outline mb-4">

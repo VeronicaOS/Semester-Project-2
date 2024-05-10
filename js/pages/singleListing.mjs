@@ -59,6 +59,7 @@ function renderListing(listing) {
             carouselInner.classList.add("carousel-inner");
             listing.media.forEach((img, i) => {
                 const button = document.createElement("button");
+                button.classList.add("bg-none");
 
                 button.setAttribute("data-bs-slide-to", i);
 
@@ -76,7 +77,7 @@ function renderListing(listing) {
 
                 const curImg = document.createElement("img");
                 curImg.src = img.url;
-                curImg.setAttribute("class", "d-block w-100 object-fit-cover");
+                curImg.setAttribute("class", "d-block w-100 h-100 object-fit-cover");
 
                 imgContainer.appendChild(curImg);
                 carouselInner.appendChild(imgContainer);
@@ -169,7 +170,7 @@ function renderListing(listing) {
     smallDiv.textContent = `Ends: ${curDate}`;
 
     let pBid = document.createElement("p");
-    pBid.className = "bid small";
+    pBid.className = "bid small mt-3";
     pBid.textContent = `Current bid: ${bidPrice}`;
 
     let dFlexDiv = document.createElement("div");
@@ -178,7 +179,7 @@ function renderListing(listing) {
     let form = document.createElement("form");
 
     form.id = "bidForm";
-    form.setAttribute("class", "w-25");
+    form.setAttribute("class", "w-25 me-3");
 
     let input = document.createElement("input");
     input.id = "amount-input";
