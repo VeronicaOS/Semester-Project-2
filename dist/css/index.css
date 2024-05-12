@@ -1,8 +1,4 @@
 @charset "UTF-8";
-.font {
-  font-family: "Montserrat", sans-serif;
-}
-
 .home-newsletter {
   padding: 80px 0;
   background: #9ebef5;
@@ -44,6 +40,24 @@
 
 .carousel-inner {
   max-height: 650px;
+}
+
+.profile-img img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.img-height img {
+  height: 200px;
+}
+
+.nav-profile img {
+  height: 40px;
+  width: 40px;
+}
+
+.display-6 {
+  font-weight: 100;
 }
 
 /*!
@@ -11890,6 +11904,9 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+:root {
+  --bs-body-font-family: "Monsterrat", sans-serif;
 }
 
 /*# sourceMappingURL=index.css.map */

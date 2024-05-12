@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script type="module" src="./js/pages/home.mjs"></script>
   </body>
 </head>
 <body>
@@ -38,15 +39,19 @@
                   <li class="nav-item">
                     <a class="nav-link d-md-block d-lg-none" href="./pages/listings/index.html">AUCTIONS</a>
                   </li>
-                  <li class="nav-item">
+                  <li id="sell-nav" class="nav-item">
                     <a class="nav-link d-md-block d-lg-none" href="./pages/listings/createListing/index.html">SELL</a>
                   </li>
                 </ul>
                 <form class="d-flex input-group w-25 mt-3 mt-lg-0" role="search">
-                  <input class="form-control" type="search" aria-label="Search">
+                  <input id="search" class="form-control" type="search" aria-label="Search">
                   <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
-                <div class="ms-lg-4 mt-4 mt-lg-0"><a class="nav-link" href="./pages/login/index.html" aria-disabled="true">LOG IN</a></div>
+                <div class="nav-profile ms-lg-4" id="navProfile">
+                  <a id="nav-name" class="text-decoration-none text-dark pe-1" href="/pages/profile/index.html"></a>
+                  <img class="img-fluid rounded-circle" id="nav-img" alt=""></div>
+                <div class="ms-lg-2 mt-4 mt-lg-0"><a class="btn d-none" href="/pages/login/index.html" id="loginButton" type="submit">LOG IN</a></div>
+                <div class="ms-lg-2 mt-4 mt-lg-0"><button class="btn" id="logoutButton">LOG OUT</button></div>
               </div>
             </div>
           </nav>
@@ -59,7 +64,7 @@
                 <a class="nav-link" href="#">HOW IT WORKS</a>
                 <a class="nav-link" href="#">ABOUT</a>
                 <a class="nav-link" href="./pages/listings/index.html">AUCTIONS</a>
-                <a class="nav-link" href="./pages/listings/createListing/index.html">SELL</a>
+                <a id="sell-btn" class="nav-link" href="./pages/listings/createListing/index.html">SELL</a>
               </div>
             </div>
           </nav>
@@ -97,16 +102,16 @@
           
           <!-- RECENTLY SOLD -->
 
-          <div class="bg-light">
+          <div class="bg-light py-5">
             <div class="container bg-light">
               <div class="row row-col-1 row-col-md-2 p-5 d-flex justify-content-between">
                 <div class="col-6 py-4">
                   <h2 class="text-primary mb-5">Recently sold</h2>
                   <p class="display-6">White Sapphire Halo Birthstone Pendant<p>
-                  <p class="w-75">Those born in April know that their beautiful birthstone is the diamond, but the second option is the goregous white sapphire! It looks almost exactly like a diamond and has the same energy properties! The base of the pendant is 14k white gold, the gold of the moon. The center piece is a 6mm round white saphhire and is engulfed by an angel halo of more petite white sapphires! </p>
-                  <p>Bid purchase 738$</p>
+                  <p class="w-75 ">Those born in April know that their beautiful birthstone is the diamond, but the second option is the goregous white sapphire! It looks almost exactly like a diamond and has the same energy properties! The base of the pendant is 14k white gold, the gold of the moon. The center piece is a 6mm round white saphhire and is engulfed by an angel halo of more petite white sapphires! </p>
+                  <p>Bid purchase: <span class="bg-secondary p-2 rounded-1 lead">738$</span></p>
                 </div>
-                <div class="col-4 py-5">
+                <div class="col-4 px-0 py-5">
                   <img src="./img/necklace.jpg" class="img-fluid rounded-circle" alt="">
                 </div>
               </div>
@@ -115,14 +120,14 @@
           
           <!-- ABOUT -->
 
-          <div class="py-5" >
-            <div class="card text-white w-50 mx-auto my-5">
+          <div class="container p-5" >
+            <div class="card text-white mx-auto my-5">
               <img src="./img/storm1.jpg" class="card-img" alt=""/>
-              <div class="card-img-overlay bg-black bg-opacity-50 p-5">
-                <div class="p-5">
+              <div class="card-img-overlay bg-black bg-opacity-50 p-5 d-flex">
+                <div class="p-5 align-self-center">
                   <h3 class="card-title">About</h3>
-                  <p class="card-text">
-                    BidStorm is a dynamic online auction platform designed to revolutionize the way people buy and sell goods. With a commitment to transparency, efficiency, and innovation, BidStorm provides users with an engaging and secure marketplace experience. Whether you're a seasoned bidder or a first-time seller, BidStorm offers a user-friendly interface and robust features to facilitate seamless transactions. From electronics and fashion to rare collectibles and artwork, BidStorm hosts a diverse range of auctions catering to every interest and budget. With its cutting-edge technology and dedication to customer satisfaction, BidStorm empowers individuals and businesses alike to connect, discover, and trade with confidence in an ever-evolving digital marketplace.
+                  <p class="card-text w-25">
+                    BidStorm is a dynamic online auction platform designed to revolutionize the way people buy and sell goods. With a commitment to transparency, efficiency, and innovation, BidStorm provides users with an engaging and secure marketplace experience. Whether you're a seasoned bidder or a first-time seller.. <span class="text-decoration-underline">Read more</span>
                   </p>
                 </div>
               </div>

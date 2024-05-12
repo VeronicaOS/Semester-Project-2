@@ -11,6 +11,7 @@
             src="https://kit.fontawesome.com/5b97174c12.js"
             crossorigin="anonymous"
         ></script>
+    <script type="module" src="../../js/pages/register.mjs"></script>
     <link rel="stylesheet" href="../../dist/css/index.css">
   </body>
 </head>
@@ -51,12 +52,12 @@
       
               <div class="h-100 d-flex align-items-center h-custom-2 px-5 mt-5 ms-xl-4 pt-xl-0 mt-xl-n5">
       
-                <form>
+                <form id="register-form">
       
                   <h3 class="fw-normal mb-3 pb-3">Register</h3>
       
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <label class="form-label" for="name-input">Full name</label>
+                    <label class="form-label" for="name-input">Name</label>
                     <input 
                         type="text" 
                         name="name"
@@ -114,7 +115,7 @@
                   </div>
       
                   <div class="pt-1 mb-4">
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-secondary btn-lg btn-block" type="button">Register</button>
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-secondary btn-lg btn-block" type="submit">Register</button>
                   </div>
       
                   <p>Want to go back to the log in page? <a href="../login/index.html" class="link-primary">Click here</a></p>

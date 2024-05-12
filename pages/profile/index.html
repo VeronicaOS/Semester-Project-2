@@ -10,7 +10,8 @@
     <script
             src="https://kit.fontawesome.com/5b97174c12.js"
             crossorigin="anonymous"
-        ></script>
+    ></script>
+    <script type="module" src="../../js/pages/profile.mjs"></script>
     <link rel="stylesheet" href="../../dist/css/index.css">
   </body>
 </head>
@@ -36,28 +37,32 @@
                 <li class="nav-item">
                   <a class="nav-link d-md-block d-lg-none" href="../listings/index.html">AUCTIONS</a>
                 </li>
-                <li class="nav-item">
+                <li id="sell-nav" class="nav-item">
                   <a class="nav-link d-md-block d-lg-none" href="../listings/createListing/index.html">SELL</a>
                 </li>
               </ul>
               <form class="d-flex input-group w-25 mt-3 mt-lg-0" role="search">
-                <input class="form-control" type="search" aria-label="Search">
+                <input id="search" class="form-control" type="search" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
               </form>
-              <div class="ms-lg-4 mt-4 mt-lg-0"><a class="nav-link" href="../login/index.html" aria-disabled="true">LOG IN</a></div>
+              <div class="nav-profile ms-lg-4" id="navProfile">
+                <a id="nav-name" class="text-decoration-none text-dark pe-1" href="index.html"></a>
+                <img class="img-fluid rounded-circle" id="nav-img" alt=""></div>
+              <div class="ms-lg-2 mt-4 mt-lg-0"><a class="btn d-none" href="../login/index.html" id="loginButton" type="submit">LOG IN</a></div>
+              <div class="ms-lg-2 mt-4 mt-lg-0"><button class="btn" id="logoutButton">LOG OUT</button></div>
             </div>
           </div>
         </nav>
 
         <!-- SECOND NAVBAR -->
         
-        <nav class="navbar navbar-expand-lg d-none d-lg-block">
+        <nav class="bg-secondary navbar navbar-expand-lg d-none d-lg-block">
           <div class="container-fluid justify-content-center">
             <div class="navbar-nav gap-4">
               <a class="nav-link" href="#">HOW IT WORKS</a>
               <a class="nav-link" href="#">ABOUT</a>
               <a class="nav-link" href="../listings/index.html">AUCTIONS</a>
-              <a class="nav-link" href="../listings/createListing/index.html">SELL</a>
+              <a id="sell-btn" class="nav-link" href="../listings/createListing/index.html">SELL</a>
             </div>
           </div>
         </nav>
@@ -65,12 +70,15 @@
   </header>
       
   <main>
-    <div class="bg-secondary py-5">
+    <div class="py-5">
       <div class="container mt-4 p-3 d-flex justify-content-center"> 
-        <div class="card w-50 p-4 mb-4"> 
+        <div class="bg-light card w-50 p-4 mb-4"> 
           <div class="d-flex flex-column justify-content-center align-items-center"> 
-            <img src="../../img/necklace.jpg" class="rounded-circle img-fluid h25 w-25" />
-            
+            <div class="profile-img">
+
+              <img class="rounded-circle img-fluid" id="profile-avatar" />
+              
+            </div>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-secondary my-3" data-bs-toggle="modal" data-bs-target="#AvatarModal">
               Change image
@@ -85,31 +93,33 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <div data-mdb-input-init class="form-outline mb-4 w-75">
-                      <label class="form-label" for="avatar-input">Link to profile image</label>
-                      <input
-                          type="url"
-                          name="avatar"
-                          id="avatar-input"
-                          class="form-control"
-                      />
-                    </div>
+                    <form id="avatar-form">
+                      <div data-mdb-input-init class="form-outline mb-4 w-75">
+                        <label class="form-label" for="avatar-input">Link to profile image</label>
+                        <input
+                            type="url"
+                            name="avatar"
+                            id="avatar-input"
+                            class="form-control"
+                        />
+                      </div>
+                    </form>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-secondary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="save-avatar">Save changes</button>
                   </div>
                 </div>
               </div>
             </div>
-            <span class="name mt-3">John Doe</span> 
-            <span class="idd">email</span> 
+            <span class="name mt-3" id="profile-name"></span> 
+            <span id="profile-email">email</span> 
             <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
-              <span>Credits: <span>398</span></span> 
+              <span>Credits: <span id="profile-credit"></span></span> 
             </div> 
 
             <div class="text mt-3"> 
-              <p>bio</p>
+              <p id="profile-bio">bio</p>
             </div> 
             <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> 
               <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span> 
@@ -122,8 +132,8 @@
         </div>
       </div>
     </div>
-      
     </main>
+
   <footer class="pt-5 bg-light">
     <!-- BIDSTORM -->
       <div class="row container-fluid justify-content-center">
