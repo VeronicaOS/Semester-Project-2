@@ -77,7 +77,10 @@ function renderListing(listing) {
 
                 const curImg = document.createElement("img");
                 curImg.src = img.url;
-                curImg.setAttribute("class", "d-block w-100 h-100 object-fit-cover");
+                curImg.setAttribute(
+                    "class",
+                    "d-block w-100 h-100 object-fit-cover"
+                );
 
                 imgContainer.appendChild(curImg);
                 carouselInner.appendChild(imgContainer);
@@ -177,7 +180,6 @@ function renderListing(listing) {
     dFlexDiv.className = "d-flex";
 
     let form = document.createElement("form");
-
     form.id = "bidForm";
     form.setAttribute("class", "w-25 me-3");
 
@@ -261,4 +263,5 @@ const bid = document.getElementById("bid-btn");
 bid.addEventListener("click", function (event) {
     const amount = document.getElementById("amount-input");
     bidOnListing(amount.value);
+    console.log(bidOnListing(amount.value));
 });
