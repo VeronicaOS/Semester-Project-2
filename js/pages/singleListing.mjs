@@ -1,12 +1,10 @@
 import { API_KEY, load, BASE_URL } from "../api/constants.mjs";
 import { header } from "../utils/index.mjs";
-console.log("test");
 document.addEventListener("DOMContentLoaded", function () {
     header();
 });
 
 const user = load("profile");
-console.log(user);
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const listingId = urlParams.get("id");
@@ -29,8 +27,7 @@ async function getListing() {
     });
 
     const data = await response.json();
-
-    console.log(data);
+    console.log("Listing:", data.data);
 
     return data.data;
 }
@@ -85,8 +82,6 @@ function renderListing(listing) {
                 imgContainer.appendChild(curImg);
                 carouselInner.appendChild(imgContainer);
             });
-            console.log(carouselBtns);
-            console.log(carouselInner);
 
             let prevButton = document.createElement("button");
             prevButton.className = "carousel-control-prev";
@@ -134,7 +129,6 @@ function renderListing(listing) {
             );
 
             media = carouselContainer;
-            console.log(carouselContainer);
             // bare et bilde
         } else {
             const img = document.createElement("img");
@@ -187,7 +181,6 @@ function renderListing(listing) {
     input.id = "amount-input";
     input.type = "number";
     input.className = "form-control text-center me-3 ";
-    input.id = "inputQuantity";
     form.appendChild(input);
 
     let button = document.createElement("button");
@@ -206,22 +199,6 @@ function renderListing(listing) {
     dFlexDiv.append(form, button);
     contentContainer.appendChild(dFlexDiv);
     mainContainer.appendChild(contentContainer);
-    //     const template = `<div class="row gx-4 gx-lg-5 align-items-center">
-    //     <div class="col-md-6">${media}</div>
-    //     <div class="col-md-6">
-    //         <h1 class="display-5 fw-bolder">${listing.title}</h1>
-    //         <p class="lead">${listing.description}</p>
-    //         <div class="small mb-1">Ends: ${curDate}</div>
-    //         <p class="bid">${bidPrice}</p>
-    //         <div class="d-flex">
-    //             <form id="bidForm"><input id="amount-input" type="number" class="form-control text-center me-3 w-25" id="inputQuantity" /></form>
-    //             <button id="bid-btn" class="btn btn-outline-primary flex-shrink-0" type="button">
-    //                 <i class="bi-cart-fill me-1"></i>
-    //                 Enter bid
-    //             </button>
-    //         </div>
-    //     </div>
-    // </div>`;
     return mainContainer;
 }
 
@@ -250,11 +227,11 @@ async function bidOnListing(amount) {
     })
         .then((response) => response.json())
         .then(async (json) => {
-            console.log(json);
             const listing = await getListing();
             const listingContainer =
                 document.getElementById("listing-container");
-            listingContainer.innerHTML = renderListing(listing);
+            listingContainer.innerHTML = "";
+            listingContainer.append(renderListing(listing));
             document.getElementById("bidForm").reset();
         });
 }
@@ -263,5 +240,4 @@ const bid = document.getElementById("bid-btn");
 bid.addEventListener("click", function (event) {
     const amount = document.getElementById("amount-input");
     bidOnListing(amount.value);
-    console.log(bidOnListing(amount.value));
 });
