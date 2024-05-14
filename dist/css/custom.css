@@ -1,17 +1,70 @@
-/* Error: Undefined variable.
- *   ,
- * 5 |     background: $secondary;
- *   |                 ^^^^^^^^^^
- *   '
- *   scss/custom.scss 5:17  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 5 \2502      background: $secondary;\a   \2502                  ^^^^^^^^^^\a   \2575 \a   scss/custom.scss 5:17  root stylesheet";
+.home-newsletter {
+  padding: 80px 0;
+  color: #333333;
 }
+
+.home-newsletter .content {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.home-newsletter .content h2 {
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.home-newsletter .content .form-control {
+  height: 50px;
+  background: rgba(255, 255, 255, 0.6);
+  border-color: transparent;
+  border-radius: 20px 0 0 20px;
+}
+
+.home-newsletter .content .form-control:focus {
+  box-shadow: none;
+  border-color: #28599a;
+}
+
+.home-newsletter .content .btn {
+  min-height: 50px;
+  border-radius: 0 20px 20px 0;
+  background: #28599a;
+  color: #fff;
+}
+
+.carousel-inner {
+  height: 40px;
+}
+
+.profile-img img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.img-height img {
+  height: 200px;
+}
+
+.nav-profile img {
+  height: 40px;
+  width: 40px;
+}
+
+.display-6 {
+  font-weight: 100;
+}
+
+body p,
+body h1,
+body h5,
+label,
+span,
+.navbar-nav a {
+  color: #333333;
+}
+
+/*# sourceMappingURL=custom.css.map */

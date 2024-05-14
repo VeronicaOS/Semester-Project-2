@@ -1,7 +1,6 @@
 @charset "UTF-8";
 .home-newsletter {
   padding: 80px 0;
-  background: #9ebef5;
   color: #333333;
 }
 
@@ -39,7 +38,7 @@
 }
 
 .carousel-inner {
-  max-height: 600px;
+  height: 40px;
 }
 
 .profile-img img {
@@ -58,6 +57,17 @@
 
 .display-6 {
   font-weight: 100;
+}
+
+body p,
+body h1,
+body .h1,
+body h5,
+body .h5,
+label,
+span,
+.navbar-nav a {
+  color: #333333;
 }
 
 /*!
