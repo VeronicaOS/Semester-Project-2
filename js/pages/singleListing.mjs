@@ -147,7 +147,7 @@ function renderListing(listing) {
 
     let listingContainer = document.createElement("div");
     if (media !== "") {
-        listingContainer.className = "col-md-6";
+        listingContainer.className = "listing-container col-md-6";
         listingContainer.appendChild(media);
         mainContainer.appendChild(listingContainer);
     }
@@ -169,6 +169,47 @@ function renderListing(listing) {
     let pBid = document.createElement("p");
     pBid.className = "bid small mt-3";
     pBid.textContent = `Current bid: ${bidPrice}`;
+
+    let viewBidsDiv = document.createElement("div");
+    viewBidsDiv.id = "viewBids";
+
+    let paragraph = document.createElement("p");
+    viewBidsDiv.appendChild(paragraph);
+
+    let anchor = document.createElement("a");
+    anchor.className = "text-decoration-none text-dark small";
+    anchor.setAttribute("data-bs-toggle", "collapse");
+    anchor.setAttribute("href", "#collapseBids");
+    anchor.setAttribute("role", "button");
+    anchor.setAttribute("aria-expanded", "false");
+    anchor.setAttribute("aria-controls", "collapseBids");
+    anchor.innerHTML =
+        'View all bids <i class="fa fa-caret-down" aria-hidden="true"></i>';
+    paragraph.appendChild(anchor);
+
+    let collapseDiv = document.createElement("div");
+    collapseDiv.className = "collapse";
+    collapseDiv.id = "collapseBids";
+    viewBidsDiv.appendChild(collapseDiv);
+
+    let cardDiv = document.createElement("div");
+    cardDiv.className = "card card-body bg-secondary w-100 mb-4";
+    collapseDiv.appendChild(cardDiv);
+
+    let bidList = document.createElement("ul");
+    bidList.className = "ps-0 mb-0 d-flex justify-content-between";
+    cardDiv.appendChild(bidList);
+
+    let li = document.createElement("li");
+    li.id = "bidName";
+    li.className =
+        "list-group-item d-flex justify-content-between align-items-center";
+    bidList.appendChild(li);
+
+    let spanBadge = document.createElement("span");
+    spanBadge.id = "bidAmount";
+    spanBadge.className = "badge bg-white text-dark rounded-pill pt-1 mt-1";
+    bidList.appendChild(spanBadge);
 
     let dFlexDiv = document.createElement("div");
     dFlexDiv.className = "d-flex";
@@ -194,7 +235,7 @@ function renderListing(listing) {
 
     let buttonText = document.createTextNode("Enter bid");
 
-    contentContainer.append(header, pLead, smallDiv, pBid);
+    contentContainer.append(header, pLead, smallDiv, pBid, viewBidsDiv);
     button.appendChild(buttonText);
     dFlexDiv.append(form, button);
     contentContainer.appendChild(dFlexDiv);
@@ -205,6 +246,15 @@ function renderListing(listing) {
 const listing = await getListing();
 const listingContainer = document.getElementById("listing-container");
 listingContainer.append(renderListing(listing));
+
+
+
+listing.bids.forEach((bid) => {
+    const bidName = document.querySelector("#bidName");
+    const bidAmount = document.querySelector("#bidAmount");
+    bidName.innerText = `${bid.bidder.name}`;
+    bidAmount.innerText = `${bid.amount}`;
+});
 
 // BID
 

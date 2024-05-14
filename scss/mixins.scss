@@ -1,0 +1,11 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@mixin mq-height($height-sm, $height-md, $height-lg) {
+    height: $height-sm;
+    @include media-breakpoint-up(md) {
+      height: $height-md;
+    }
+    @include media-breakpoint-up(lg) {
+      height: $height-lg;
+    }
+  }
