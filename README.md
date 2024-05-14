@@ -1,6 +1,7 @@
 # Semester-Project-2
 
-<img width="1440" alt="Screenshot 2024-05-14 at 05 50 03" src="https://github.com/VeronicaOS/Semester-Project-2/assets/126082037/cf8d45ed-bf3f-4fe3-91ee-62fa7f0f8b9c">
+<img width="1440" alt="Screenshot 2024-05-14 at 05 50 03" src="https://github.com/VeronicaOS/Semester-Project-2/assets/126082037/838ebd67-1a10-4c24-bfc5-984534c142d6">
+
 
 
 # BidStorm
