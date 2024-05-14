@@ -57,21 +57,22 @@ function renderListing(listing) {
     if (listing.media.length > 0) {
         media = `<img class="card-img-top img-fluid" src=${listing.media[0].url} alt=${listing.media[0].alt}/>`;
     }
+    if ((listing.media.length === 0)) {
+        media = `<img class="card-img-top img-fluid" src="../../img/placeholder.jpg" alt="Placeholder image - a blank piece of paper on a leafy ground"/>`;
+    }
     let footer = "";
     if (user) {
         footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
     </div>`;
     }
-    const template = `<div class="col mb-5">
-        <div class="card">
+    const template = `<div class="col-9 mb-5">
+        <div class="card d-flex">
         <div class="img-height">${media}</div>
-        <div class="card-body p-4">
             <div class="text-center">
-                <h5 class="fw-bolder">${listing.title}</h5>
+                <h5 class="fw-bolder pt-4">${listing.title}</h5>
                 <p>Ends: ${curDate}</p>
             </div>
-        </div>
         ${footer}
     </div>
   </div>`;
@@ -84,8 +85,6 @@ const listingsContainer = document.getElementById("listings-container");
 listings.forEach((listing) => {
     listingsContainer.innerHTML += renderListing(listing);
 });
-
-
 
 // const sorting = document.getElementById("sort-by");
 // sorting.addEventListener("change", function (event) {
