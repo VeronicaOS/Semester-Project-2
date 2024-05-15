@@ -193,23 +193,13 @@ function renderListing(listing) {
     viewBidsDiv.appendChild(collapseDiv);
 
     let cardDiv = document.createElement("div");
-    cardDiv.className = "card card-body bg-secondary w-100 mb-4";
+    cardDiv.className = "card card-body bg-secondary w-75 mb-4";
     collapseDiv.appendChild(cardDiv);
 
     let bidList = document.createElement("ul");
-    bidList.className = "ps-0 mb-0 d-flex justify-content-between";
+    bidList.id = "bidList";
+    bidList.className = "ps-0 mb-0 d-flex flex-column";
     cardDiv.appendChild(bidList);
-
-    let li = document.createElement("li");
-    li.id = "bidName";
-    li.className =
-        "list-group-item d-flex justify-content-between align-items-center";
-    bidList.appendChild(li);
-
-    let spanBadge = document.createElement("span");
-    spanBadge.id = "bidAmount";
-    spanBadge.className = "badge bg-white text-dark rounded-pill pt-1 mt-1";
-    bidList.appendChild(spanBadge);
 
     let dFlexDiv = document.createElement("div");
     dFlexDiv.className = "d-flex";
@@ -247,13 +237,31 @@ const listing = await getListing();
 const listingContainer = document.getElementById("listing-container");
 listingContainer.append(renderListing(listing));
 
-
+// View all bids
 
 listing.bids.forEach((bid) => {
-    const bidName = document.querySelector("#bidName");
-    const bidAmount = document.querySelector("#bidAmount");
-    bidName.innerText = `${bid.bidder.name}`;
+    let bidderDiv = document.createElement("div");
+    bidderDiv.id = "bidderDiv";
+    bidderDiv.className = "d-flex justify-content-between";
+    bidList.appendChild(bidderDiv);
+
+    let bidName = document.createElement("li");
+    bidName.id = "bidName";
+    bidName.className = "list-group-item";
+    bidderDiv.appendChild(bidName);
+
+    let bidAmount = document.createElement("span");
+    bidAmount.id = "bidAmount";
+    bidAmount.className = "badge bg-white text-dark rounded-pill pt-1 mt-1";
+    bidderDiv.appendChild(bidAmount);
+
+    bidName.innerText = `${bid.bidder.name}: `;
     bidAmount.innerText = `${bid.amount}`;
+
+    bidderDiv.appendChild(bidName);
+    bidderDiv.appendChild(bidAmount);
+
+    bidList.appendChild(bidderDiv);
 });
 
 // BID
