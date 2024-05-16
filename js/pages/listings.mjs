@@ -11,8 +11,14 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const searchTerm = urlParams.get("search");
 
+let isLoading = true;
+
 async function getListings() {
-    const endpoint = "/auction/listings/?_seller=true&_bids=true";
+    let page = 1;
+    let listings = [];
+    let data;
+
+    const endpoint = `/auction/listings/?_seller=true&_bids=true`;
 
     const url = BASE_URL + endpoint;
 
@@ -23,17 +29,41 @@ async function getListings() {
         "X-Noroff-API-Key": API_KEY,
     };
 
-    const response = await fetch(url, {
+    const response = await fetch(`${url}&page=${page}`, {
         headers: headers,
         method: method,
     });
 
-    const data = await response.json();
+    data = await response.json();
+    listings = [...listings, ...data.data];
 
-    console.log(data);
+    while (!data.meta.isLastPage) {
+        page++;
+        const pageResponse = await fetch(`${url}&page=${page}`, {
+            headers: headers,
+            method: method,
+        });
+
+        data = await pageResponse.json();
+        listings = [...listings, ...data.data];
+        console.log(page, data, listings);
+    }
+    if (data.meta.isLastPage) {
+        isLoading = false;
+    }
+    console.log(listings);
 
     if (searchTerm) {
-        return data.data.filter(
+        console.log(
+            listings.filter(
+                (item) =>
+                    item.title
+                        ?.toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    item.body?.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+        );
+        return listings.filter(
             (item) =>
                 item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 item.body?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -63,7 +93,10 @@ function renderListing(listing) {
     const endsAt = `${endDay}. ${endMonth} ${endYear}`;
     let media = "";
     if (listing.media.length > 0) {
-        media = `<img class="card-img-top img-fluid" src=${listing.media[0].url} alt=${listing.media[0].alt}/>`;
+        const mediaAlt = !listing.media[0].alt
+            ? `${listing.title} - image`
+            : listing.media[0].alt;
+        media = `<img class="card-img-top img-fluid" src=${listing.media[0].url} alt="${mediaAlt}"/>`;
     }
     if (listing.media.length === 0) {
         media = `<img class="card-img-top img-fluid" src="../../img/placeholder.jpg" alt="Placeholder image - a blank piece of paper on a leafy ground"/>`;
@@ -74,7 +107,6 @@ function renderListing(listing) {
     } else {
         endsAtP = `<p><span class="fw-bold">Ends:</span> ${endsAt}</p>`;
     }
-    console.log(endsAtP);
 
     let footer = "";
     if (user) {
@@ -100,9 +132,14 @@ function renderListing(listing) {
     return template;
 }
 
-const listings = await getListings();
-
 const listingsContainer = document.getElementById("listings-container");
+if (isLoading) {
+    listingsContainer.innerHTML = "Loading auctions";
+}
+const listings = await getListings();
+if (!isLoading) {
+    listingsContainer.innerHTML = "";
+}
 listings.forEach((listing) => {
     listingsContainer.innerHTML += renderListing(listing);
 });

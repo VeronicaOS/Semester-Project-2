@@ -9,6 +9,8 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const listingId = urlParams.get("id");
 
+let isLoading = true;
+
 export async function getListing() {
     const endpoint = `/auction/listings/${listingId}?_seller=true&_bids=true`;
 
@@ -27,6 +29,7 @@ export async function getListing() {
     });
 
     const data = await response.json();
+    isLoading = false;
     console.log("Listing:", data.data);
 
     return data.data;
@@ -233,7 +236,9 @@ export function renderListing(listing) {
     return mainContainer;
 }
 
+// show
 const listing = await getListing();
+// remove
 const listingContainer = document.getElementById("listing-container");
 listingContainer.append(renderListing(listing));
 
@@ -311,4 +316,3 @@ bid.addEventListener("click", function (event) {
     bidOnListing(amount.value);
     console.log(bidOnListing);
 });
-
