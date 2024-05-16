@@ -44,8 +44,7 @@ async function getListings() {
 }
 
 function renderListing(listing) {
-    const listingDate = listing.endsAt.slice(0, 10);
-    const currentDate = new Date(listingDate);
+    const currentDate = new Date();
     const currentDay = currentDate.getDate();
     const curDay = currentDay < 10 ? "0" + currentDay : currentDay;
     const currentMonth = currentDate.toLocaleString(`default`, {
@@ -53,6 +52,15 @@ function renderListing(listing) {
     });
     const currentYear = currentDate.getFullYear();
     const curDate = `${curDay}. ${currentMonth} ${currentYear}`;
+    const listingDate = listing.endsAt.slice(0, 10);
+    const endsAtDate = new Date(listingDate);
+    const endsAtDay = endsAtDate.getDate();
+    const endDay = endsAtDay < 10 ? "0" + endsAtDay : endsAtDay;
+    const endMonth = endsAtDate.toLocaleString(`default`, {
+        month: "long",
+    });
+    const endYear = currentDate.getFullYear();
+    const endsAt = `${endDay}. ${endMonth} ${endYear}`;
     let media = "";
     if (listing.media.length > 0) {
         media = `<img class="card-img-top img-fluid" src=${listing.media[0].url} alt=${listing.media[0].alt}/>`;
@@ -60,8 +68,21 @@ function renderListing(listing) {
     if (listing.media.length === 0) {
         media = `<img class="card-img-top img-fluid" src="../../img/placeholder.jpg" alt="Placeholder image - a blank piece of paper on a leafy ground"/>`;
     }
+    let endsAtP = "";
+    if (curDate > endsAt) {
+        endsAtP = `<p><span class="fw-bold">Ends:</span> Bidding has ended</p>`;
+    } else {
+        endsAtP = `<p><span class="fw-bold">Ends:</span> ${endsAt}</p>`;
+    }
+    console.log(endsAtP);
+
     let footer = "";
     if (user) {
+        footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
+    </div>`;
+    }
+    if (curDate > endsAt) {
         footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
     </div>`;
@@ -71,7 +92,7 @@ function renderListing(listing) {
         <div class="img-height">${media}</div>
             <div class="text-center">
                 <h5 class="fw-bolder pt-4">${listing.title}</h5>
-                <p>Ends: ${curDate}</p>
+                ${endsAtP}
             </div>
         ${footer}
     </div>
