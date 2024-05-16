@@ -9,7 +9,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const listingId = urlParams.get("id");
 
-async function getListing() {
+export async function getListing() {
     const endpoint = `/auction/listings/${listingId}?_seller=true&_bids=true`;
 
     const url = BASE_URL + endpoint;
@@ -32,7 +32,7 @@ async function getListing() {
     return data.data;
 }
 
-function renderListing(listing) {
+export function renderListing(listing) {
     const listingDate = listing.endsAt.slice(0, 10);
     const currentDate = new Date(listingDate);
     const currentDay = currentDate.getDate();
@@ -266,7 +266,7 @@ listing.bids.forEach((bid) => {
 
 // BID
 
-async function bidOnListing(amount) {
+export async function bidOnListing(amount) {
     const endpoint = `/auction/listings/${listingId}/bids`;
     const url = BASE_URL + endpoint;
     const method = "post";
@@ -276,26 +276,38 @@ async function bidOnListing(amount) {
         "X-Noroff-API-Key": API_KEY,
     };
 
-    await fetch(url, {
-        headers: headers,
-        method: method,
-        body: JSON.stringify({
-            amount: Number(amount),
-        }),
-    })
-        .then((response) => response.json())
-        .then(async (json) => {
+    try {
+        const response = await fetch(url, {
+            headers: headers,
+            method: method,
+            body: JSON.stringify({
+                amount: Number(amount),
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
             const listing = await getListing();
             const listingContainer =
                 document.getElementById("listing-container");
             listingContainer.innerHTML = "";
             listingContainer.append(renderListing(listing));
             document.getElementById("bidForm").reset();
-        });
+            return data; 
+        } else if (data.statusCode === 400) {
+            alert("Bid must be higher than current bid");
+            document.getElementById("amount-input").value = "";
+            return data;
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 const bid = document.getElementById("bid-btn");
 bid.addEventListener("click", function (event) {
     const amount = document.getElementById("amount-input");
     bidOnListing(amount.value);
+    console.log(bidOnListing);
 });
