@@ -294,7 +294,7 @@ export async function bidOnListing(amount) {
             listingContainer.innerHTML = "";
             listingContainer.append(renderListing(listing));
             document.getElementById("bidForm").reset();
-            return data; 
+            return data;
         } else if (data.statusCode === 400) {
             alert("Bid must be higher than current bid");
             document.getElementById("amount-input").value = "";
@@ -311,3 +311,4 @@ bid.addEventListener("click", function (event) {
     bidOnListing(amount.value);
     console.log(bidOnListing);
 });
+

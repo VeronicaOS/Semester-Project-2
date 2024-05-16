@@ -57,7 +57,7 @@ function renderListing(listing) {
     if (listing.media.length > 0) {
         media = `<img class="card-img-top img-fluid" src=${listing.media[0].url} alt=${listing.media[0].alt}/>`;
     }
-    if ((listing.media.length === 0)) {
+    if (listing.media.length === 0) {
         media = `<img class="card-img-top img-fluid" src="../../img/placeholder.jpg" alt="Placeholder image - a blank piece of paper on a leafy ground"/>`;
     }
     let footer = "";
@@ -86,28 +86,32 @@ listings.forEach((listing) => {
     listingsContainer.innerHTML += renderListing(listing);
 });
 
-// const sorting = document.getElementById("sort-by");
-// sorting.addEventListener("change", function (event) {
-//     const value = event.target.value;
-//     postsContainer.innerHTML = "";
-//     let sortedPosts;
-//     if (value === "newest") {
-//         sortedPosts = posts.sort(function (a, b) {
-//             return new Date(b.created) - new Date(a.created);
-//         });
-//     } else if (value === "oldest") {
-//         sortedPosts = posts.sort(function (a, b) {
-//             return new Date(a.created) - new Date(b.created);
-//         });
-//     } else if (value === "popularity") {
-//         sortedPosts = posts.sort(function (a, b) {
-//             return b._count.reactions - a._count.reactions;
-//         });
-//     }
-//     sortedPosts.forEach((post) => {
-//         postsContainer.innerHTML += renderPost(post);
-//     });
-// });
+const dropdown = document.querySelector(".dropdown-menu");
 
+dropdown.addEventListener("click", function (event) {
+    const selectedOption = event.target.textContent.trim();
+    listingsContainer.innerHTML = "";
+    let sortedListings;
 
+    if (selectedOption === "Newest") {
+        sortedListings = listings.sort(function (a, b) {
+            return new Date(b.created) - new Date(a.created);
+        });
+    } else if (selectedOption === "Oldest") {
+        sortedListings = listings.sort(function (a, b) {
+            return new Date(a.created) - new Date(b.created);
+        });
+    } else if (selectedOption === "A-Z") {
+        sortedListings = listings.sort(function (a, b) {
+            return a.title.localeCompare(b.title);
+        });
+    } else if (selectedOption === "Z-A") {
+        sortedListings = listings.sort(function (a, b) {
+            return b.title.localeCompare(a.title);
+        });
+    }
 
+    sortedListings.forEach(function (listing) {
+        listingsContainer.innerHTML += renderListing(listing);
+    });
+});
