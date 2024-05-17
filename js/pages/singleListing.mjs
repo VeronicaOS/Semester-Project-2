@@ -132,7 +132,6 @@ export function renderListing(listing) {
             );
 
             media = carouselContainer;
-            // bare et bilde
         } else {
             const img = document.createElement("img");
             img.src = listing.media[0].url;
@@ -236,10 +235,14 @@ export function renderListing(listing) {
     return mainContainer;
 }
 
-// show
-const listing = await getListing();
-// remove
 const listingContainer = document.getElementById("listing-container");
+if (isLoading) {
+    listingContainer.innerHTML = "Loading auction item";
+}
+const listing = await getListing();
+if (!isLoading) {
+    listingContainer.innerHTML = "";
+}
 listingContainer.append(renderListing(listing));
 
 // View all bids

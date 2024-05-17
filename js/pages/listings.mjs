@@ -1,9 +1,12 @@
 import { API_KEY, load, BASE_URL } from "../api/constants.mjs";
 import { header } from "../utils/index.mjs";
+import { scrollToTop } from "../tools/scrollToTop.mjs"; 
 
 document.addEventListener("DOMContentLoaded", function () {
     header();
 });
+
+scrollToTop("btn-back-to-top", 700);
 
 const user = load("profile");
 console.log(user);
@@ -115,15 +118,15 @@ function renderListing(listing) {
     </div>`;
     }
     if (curDate > endsAt) {
-        footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent invisible">
         <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
     </div>`;
     }
     const template = `<div class="col-9 mb-5">
         <div class="card d-flex">
         <div class="img-height">${media}</div>
-            <div class="text-center">
-                <h5 class="fw-bolder pt-4">${listing.title}</h5>
+            <div class="text-center mx-2">
+                <h5 class="listing-title fw-bolder pt-4">${listing.title}</h5>
                 ${endsAtP}
             </div>
         ${footer}
