@@ -137,7 +137,7 @@ function renderListing(listing) {
 
 const listingsContainer = document.getElementById("listings-container");
 if (isLoading) {
-    listingsContainer.innerHTML = "Loading auctions";
+    listingsContainer.innerHTML = "Loading auctions...";
 }
 const listings = await getListings();
 if (!isLoading) {
