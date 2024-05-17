@@ -132,6 +132,7 @@ export function renderListing(listing) {
             );
 
             media = carouselContainer;
+            // bare et bilde
         } else {
             const img = document.createElement("img");
             img.src = listing.media[0].url;
@@ -237,7 +238,7 @@ export function renderListing(listing) {
 
 const listingContainer = document.getElementById("listing-container");
 if (isLoading) {
-    listingContainer.innerHTML = "Loading auction item";
+    listingContainer.innerHTML = "Loading auction item...";
 }
 const listing = await getListing();
 if (!isLoading) {
