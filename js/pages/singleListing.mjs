@@ -1,17 +1,17 @@
 import { API_KEY, load, BASE_URL } from "../api/constants.mjs";
 import { header } from "../utils/index.mjs";
-console.log("test");
 document.addEventListener("DOMContentLoaded", function () {
     header();
 });
 
 const user = load("profile");
-console.log(user);
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const listingId = urlParams.get("id");
 
-async function getListing() {
+let isLoading = true;
+
+export async function getListing() {
     const endpoint = `/auction/listings/${listingId}?_seller=true&_bids=true`;
 
     const url = BASE_URL + endpoint;
@@ -29,13 +29,13 @@ async function getListing() {
     });
 
     const data = await response.json();
-
-    console.log(data);
+    isLoading = false;
+    console.log("Listing:", data.data);
 
     return data.data;
 }
 
-function renderListing(listing) {
+export function renderListing(listing) {
     const listingDate = listing.endsAt.slice(0, 10);
     const currentDate = new Date(listingDate);
     const currentDay = currentDate.getDate();
@@ -77,13 +77,14 @@ function renderListing(listing) {
 
                 const curImg = document.createElement("img");
                 curImg.src = img.url;
-                curImg.setAttribute("class", "d-block w-100 h-100 object-fit-cover");
+                curImg.setAttribute(
+                    "class",
+                    "d-block w-100 h-100 object-fit-cover"
+                );
 
                 imgContainer.appendChild(curImg);
                 carouselInner.appendChild(imgContainer);
             });
-            console.log(carouselBtns);
-            console.log(carouselInner);
 
             let prevButton = document.createElement("button");
             prevButton.className = "carousel-control-prev";
@@ -131,7 +132,6 @@ function renderListing(listing) {
             );
 
             media = carouselContainer;
-            console.log(carouselContainer);
             // bare et bilde
         } else {
             const img = document.createElement("img");
@@ -150,7 +150,7 @@ function renderListing(listing) {
 
     let listingContainer = document.createElement("div");
     if (media !== "") {
-        listingContainer.className = "col-md-6";
+        listingContainer.className = "listing-container col-md-6";
         listingContainer.appendChild(media);
         mainContainer.appendChild(listingContainer);
     }
@@ -173,11 +173,41 @@ function renderListing(listing) {
     pBid.className = "bid small mt-3";
     pBid.textContent = `Current bid: ${bidPrice}`;
 
+    let viewBidsDiv = document.createElement("div");
+    viewBidsDiv.id = "viewBids";
+
+    let paragraph = document.createElement("p");
+    viewBidsDiv.appendChild(paragraph);
+
+    let anchor = document.createElement("a");
+    anchor.className = "text-decoration-none text-dark small";
+    anchor.setAttribute("data-bs-toggle", "collapse");
+    anchor.setAttribute("href", "#collapseBids");
+    anchor.setAttribute("role", "button");
+    anchor.setAttribute("aria-expanded", "false");
+    anchor.setAttribute("aria-controls", "collapseBids");
+    anchor.innerHTML =
+        'View all bids <i class="fa fa-caret-down" aria-hidden="true"></i>';
+    paragraph.appendChild(anchor);
+
+    let collapseDiv = document.createElement("div");
+    collapseDiv.className = "collapse";
+    collapseDiv.id = "collapseBids";
+    viewBidsDiv.appendChild(collapseDiv);
+
+    let cardDiv = document.createElement("div");
+    cardDiv.className = "card card-body bg-secondary w-75 mb-4";
+    collapseDiv.appendChild(cardDiv);
+
+    let bidList = document.createElement("ul");
+    bidList.id = "bidList";
+    bidList.className = "ps-0 mb-0 d-flex flex-column";
+    cardDiv.appendChild(bidList);
+
     let dFlexDiv = document.createElement("div");
     dFlexDiv.className = "d-flex";
 
     let form = document.createElement("form");
-
     form.id = "bidForm";
     form.setAttribute("class", "w-25 me-3");
 
@@ -185,7 +215,6 @@ function renderListing(listing) {
     input.id = "amount-input";
     input.type = "number";
     input.className = "form-control text-center me-3 ";
-    input.id = "inputQuantity";
     form.appendChild(input);
 
     let button = document.createElement("button");
@@ -199,37 +228,54 @@ function renderListing(listing) {
 
     let buttonText = document.createTextNode("Enter bid");
 
-    contentContainer.append(header, pLead, smallDiv, pBid);
+    contentContainer.append(header, pLead, smallDiv, pBid, viewBidsDiv);
     button.appendChild(buttonText);
     dFlexDiv.append(form, button);
     contentContainer.appendChild(dFlexDiv);
     mainContainer.appendChild(contentContainer);
-    //     const template = `<div class="row gx-4 gx-lg-5 align-items-center">
-    //     <div class="col-md-6">${media}</div>
-    //     <div class="col-md-6">
-    //         <h1 class="display-5 fw-bolder">${listing.title}</h1>
-    //         <p class="lead">${listing.description}</p>
-    //         <div class="small mb-1">Ends: ${curDate}</div>
-    //         <p class="bid">${bidPrice}</p>
-    //         <div class="d-flex">
-    //             <form id="bidForm"><input id="amount-input" type="number" class="form-control text-center me-3 w-25" id="inputQuantity" /></form>
-    //             <button id="bid-btn" class="btn btn-outline-primary flex-shrink-0" type="button">
-    //                 <i class="bi-cart-fill me-1"></i>
-    //                 Enter bid
-    //             </button>
-    //         </div>
-    //     </div>
-    // </div>`;
     return mainContainer;
 }
 
-const listing = await getListing();
 const listingContainer = document.getElementById("listing-container");
+if (isLoading) {
+    listingContainer.innerHTML = "Loading auction item...";
+}
+const listing = await getListing();
+if (!isLoading) {
+    listingContainer.innerHTML = "";
+}
 listingContainer.append(renderListing(listing));
+
+// View all bids
+
+listing.bids.forEach((bid) => {
+    let bidderDiv = document.createElement("div");
+    bidderDiv.id = "bidderDiv";
+    bidderDiv.className = "d-flex justify-content-between";
+    bidList.appendChild(bidderDiv);
+
+    let bidName = document.createElement("li");
+    bidName.id = "bidName";
+    bidName.className = "list-group-item";
+    bidderDiv.appendChild(bidName);
+
+    let bidAmount = document.createElement("span");
+    bidAmount.id = "bidAmount";
+    bidAmount.className = "badge bg-white text-dark rounded-pill pt-1 mt-1";
+    bidderDiv.appendChild(bidAmount);
+
+    bidName.innerText = `${bid.bidder.name}: `;
+    bidAmount.innerText = `${bid.amount}`;
+
+    bidderDiv.appendChild(bidName);
+    bidderDiv.appendChild(bidAmount);
+
+    bidList.appendChild(bidderDiv);
+});
 
 // BID
 
-async function bidOnListing(amount) {
+export async function bidOnListing(amount) {
     const endpoint = `/auction/listings/${listingId}/bids`;
     const url = BASE_URL + endpoint;
     const method = "post";
@@ -239,26 +285,38 @@ async function bidOnListing(amount) {
         "X-Noroff-API-Key": API_KEY,
     };
 
-    await fetch(url, {
-        headers: headers,
-        method: method,
-        body: JSON.stringify({
-            amount: Number(amount),
-        }),
-    })
-        .then((response) => response.json())
-        .then(async (json) => {
-            console.log(json);
+    try {
+        const response = await fetch(url, {
+            headers: headers,
+            method: method,
+            body: JSON.stringify({
+                amount: Number(amount),
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
             const listing = await getListing();
             const listingContainer =
                 document.getElementById("listing-container");
-            listingContainer.innerHTML = renderListing(listing);
+            listingContainer.innerHTML = "";
+            listingContainer.append(renderListing(listing));
             document.getElementById("bidForm").reset();
-        });
+            return data;
+        } else if (data.statusCode === 400) {
+            alert("Bid must be higher than current bid");
+            document.getElementById("amount-input").value = "";
+            return data;
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 const bid = document.getElementById("bid-btn");
 bid.addEventListener("click", function (event) {
     const amount = document.getElementById("amount-input");
     bidOnListing(amount.value);
+    console.log(bidOnListing);
 });

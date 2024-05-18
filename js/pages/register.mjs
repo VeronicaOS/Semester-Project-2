@@ -26,29 +26,47 @@ registerForm.addEventListener("submit", function (event) {
         };
     }
 
-    const confirmed = window.confirm(
-        "You have now made a user - continue to log in page"
-    );
-    if (!confirmed) {
-        return;
-    }
+    // const confirmed = window.confirm(
+    //     "You have now made a user - continue to log in page"
+    // );
+    // if (!confirmed) {
+    //     return;
+    // }
 
-    registerForm.reset();
+    // registerForm.reset();
 
     registerRequest(body);
+    console.log(registerRequest);
 });
 
 async function registerRequest(body) {
-    body = JSON.stringify(body);
-    const method = "post";
-    const url = "https://v2.api.noroff.dev/auth/register";
-    const headers = { "Content-Type": "application/json" };
+    try {
+        body = JSON.stringify(body);
+        const method = "post";
+        const url = "https://v2.api.noroff.dev/auth/register";
+        const headers = { "Content-Type": "application/json" };
 
-    const response = await fetch(url, {
-        headers: headers,
-        method: method,
-        body: body,
-    });
+        const response = await fetch(url, {
+            headers: headers,
+            method: method,
+            body: body,
+        });
 
-    const data = await response.json();
+        const data = await response.json();
+
+        if (response.ok) {
+            const confirmed = window.confirm(
+                "You have now made a user - continue to log in page"
+            );
+            if (!confirmed) {
+                return;
+            }
+
+            registerForm.reset();
+        } else if (response.status === 400) {
+            return alert("Looks like this user already exists.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
