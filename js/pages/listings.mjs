@@ -98,7 +98,6 @@ function renderListing(listing) {
     } else {
         endsAtP = `<p><span class="fw-bold">Ends:</span> ${endsAt}</p>`;
     }
-    console.log(endsAtP);
 
     let footer = "";
     if (user) {
@@ -158,14 +157,15 @@ dropdown.addEventListener("click", function (event) {
         sortedListings = listings.sort(function (a, b) {
             return new Date(a.created) - new Date(b.created);
         });
-    } else if (selectedOption === "A-Z") {
-        sortedListings = listings.sort(function (a, b) {
-            return a.title.localeCompare(b.title);
-        });
-    } else if (selectedOption === "Z-A") {
-        sortedListings = listings.sort(function (a, b) {
-            return b.title.localeCompare(a.title);
-        });
+    } else if (selectedOption === "Ending soon") {
+        const now = new Date();
+        sortedListings = listings
+            .filter(function (listing) {
+                return new Date(listing.endsAt) > now;
+            })
+            .sort(function (a, b) {
+                return new Date(a.endsAt) - new Date(b.endsAt);
+            });
     }
 
     sortedListings.forEach(function (listing) {
