@@ -1,6 +1,6 @@
 import { API_KEY, load, BASE_URL } from "../api/constants.mjs";
 import { header } from "../utils/index.mjs";
-import { scrollToTop } from "../tools/scrollToTop.mjs"; 
+import { scrollToTop } from "../tools/scrollToTop.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
     header();
@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
 scrollToTop("btn-back-to-top", 700);
 
 const user = load("profile");
-console.log(user);
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const searchTerm = urlParams.get("search");
@@ -49,23 +48,12 @@ async function getListings() {
 
         data = await pageResponse.json();
         listings = [...listings, ...data.data];
-        console.log(page, data, listings);
     }
     if (data.meta.isLastPage) {
         isLoading = false;
     }
-    console.log(listings);
 
     if (searchTerm) {
-        console.log(
-            listings.filter(
-                (item) =>
-                    item.title
-                        ?.toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    item.body?.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-        );
         return listings.filter(
             (item) =>
                 item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -105,11 +93,12 @@ function renderListing(listing) {
         media = `<img class="card-img-top img-fluid" src="../../img/placeholder.jpg" alt="Placeholder image - a blank piece of paper on a leafy ground"/>`;
     }
     let endsAtP = "";
-    if (curDate > endsAt) {
+    if (currentDate > new Date(listing.endsAt)) {
         endsAtP = `<p><span class="fw-bold">Ends:</span> Bidding has ended</p>`;
     } else {
         endsAtP = `<p><span class="fw-bold">Ends:</span> ${endsAt}</p>`;
     }
+    console.log(endsAtP);
 
     let footer = "";
     if (user) {
@@ -117,7 +106,12 @@ function renderListing(listing) {
         <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
     </div>`;
     }
-    if (curDate > endsAt) {
+    if (currentDate > new Date(listing.endsAt)) {
+        footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent invisible">
+        <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
+    </div>`;
+    }
+    if (!user) {
         footer = `<div class="card-footer p-4 pt-0 border-top-0 bg-transparent invisible">
         <div class="text-center "><a data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-md btn-block" href="./singleListing/index.html?id=${listing.id}">Make a bid</a></div>
     </div>`;
@@ -146,6 +140,8 @@ if (!isLoading) {
 listings.forEach((listing) => {
     listingsContainer.innerHTML += renderListing(listing);
 });
+
+console.log(listings);
 
 const dropdown = document.querySelector(".dropdown-menu");
 

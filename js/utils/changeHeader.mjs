@@ -5,6 +5,7 @@ const navName = document.getElementById("nav-name");
 const navImage = document.getElementById("nav-img");
 const sellButton = document.getElementById("sell-btn");
 const sellNav = document.getElementById("sell-nav");
+const navSell = document.getElementById("nav-sell")
 
 export async function changeHeader() {
     const token =  localStorage.getItem("token");
@@ -35,6 +36,8 @@ export async function changeHeader() {
         }
         if (sellNav) {
             sellNav.style.display = "none";
+        }if (navSell) {
+            navSell.style.display = "none";
         }
         if (navProfile) {
             navProfile.style.display = "none";
