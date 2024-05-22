@@ -104,6 +104,5 @@ publish.addEventListener("click", async function (event) {
     profileAvatar.src = mediaUrl;
     document.getElementById("nav-img").src = mediaUrl;
 
-    // Lukke modal
     document.querySelector("#AvatarModal").classList.add("d-none");
 });

@@ -12,8 +12,6 @@ export function handleLogout() {
         localStorage.removeItem("token");
         localStorage.removeItem("profile");
 
-        // changeHeader();
-
         window.location.href = "/";
     });
 }
