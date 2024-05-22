@@ -35,7 +35,7 @@ When a new user joins the website, they are given 1000 credits to use on the sit
 - SCSS
 - Bootstrap
 - JavaScript
-- Figma
+- (Figma)
 
 ## Getting Started
 
@@ -49,7 +49,11 @@ git clone git@github.com:VeronicaOS/Semester-Project-2.git
 
 ### Running
 
-To run the app, run the following commands:
+To run the app do the following:
+
+1. Install the Live Preview extension in VSCode
+
+2. Click the Go Live button
 
 
 ## Contact
