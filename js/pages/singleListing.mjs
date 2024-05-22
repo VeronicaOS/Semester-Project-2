@@ -30,7 +30,6 @@ export async function getListing() {
 
     const data = await response.json();
     isLoading = false;
-    console.log("Listing:", data.data);
 
     return data.data;
 }
@@ -46,6 +45,14 @@ export function renderListing(listing) {
     const currentYear = currentDate.getFullYear();
     const curDate = `${curDay}. ${currentMonth} ${currentYear}`;
     let media = "";
+    if (listing.media.length === 0) {
+        const img = document.createElement("img");
+        img.src = "../../../img/placeholder.jpg";
+        img.setAttribute("class", "d-block w-100 object-fit-cover");
+        img.alt =
+            "Placeholder image - a blank piece of paper on a leafy ground";
+        media = img;
+    }
     if (listing.media.length > 0) {
         if (listing.media.length > 1) {
             const carouselContainer = document.createElement("div");
@@ -132,7 +139,6 @@ export function renderListing(listing) {
             );
 
             media = carouselContainer;
-            // bare et bilde
         } else {
             const img = document.createElement("img");
             img.src = listing.media[0].url;
@@ -140,6 +146,7 @@ export function renderListing(listing) {
             img.setAttribute("class", "d-block w-100 object-fit-cover");
         }
     }
+
     let bidPrice = 0;
     if (listing.bids.length > 0) {
         bidPrice = listing.bids[listing.bids.length - 1].amount;
@@ -158,7 +165,7 @@ export function renderListing(listing) {
     contentContainer.className = "col-md-6";
 
     let header = document.createElement("h1");
-    header.className = "display-5 fw-bolder";
+    header.className = "display-5 fw-bolder pt-4 pt-md-0";
     header.textContent = listing.title;
 
     let pLead = document.createElement("p");
@@ -318,5 +325,4 @@ const bid = document.getElementById("bid-btn");
 bid.addEventListener("click", function (event) {
     const amount = document.getElementById("amount-input");
     bidOnListing(amount.value);
-    console.log(bidOnListing);
 });

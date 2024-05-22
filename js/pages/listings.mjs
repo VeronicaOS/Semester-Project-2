@@ -140,8 +140,6 @@ listings.forEach((listing) => {
     listingsContainer.innerHTML += renderListing(listing);
 });
 
-console.log(listings);
-
 const dropdown = document.querySelector(".dropdown-menu");
 
 dropdown.addEventListener("click", function (event) {

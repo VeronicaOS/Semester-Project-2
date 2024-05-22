@@ -1,5 +1,3 @@
-import { changeHeader } from "./changeHeader.mjs";
-
 export function handleLogout() {
     const logoutButton = document.getElementById("logoutButton");
 

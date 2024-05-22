@@ -14,8 +14,6 @@ logInForm.addEventListener("submit", function (event) {
     logInRequest(body);
 });
 
-console.log(logInForm);
-
 async function logInRequest(body) {
     body = JSON.stringify(body);
     const method = "post";
