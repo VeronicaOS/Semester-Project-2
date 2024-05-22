@@ -26,17 +26,7 @@ registerForm.addEventListener("submit", function (event) {
         };
     }
 
-    // const confirmed = window.confirm(
-    //     "You have now made a user - continue to log in page"
-    // );
-    // if (!confirmed) {
-    //     return;
-    // }
-
-    // registerForm.reset();
-
     registerRequest(body);
-    console.log(registerRequest);
 });
 
 async function registerRequest(body) {

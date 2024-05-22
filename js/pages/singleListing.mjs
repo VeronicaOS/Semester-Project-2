@@ -30,7 +30,6 @@ export async function getListing() {
 
     const data = await response.json();
     isLoading = false;
-    console.log("Listing:", data.data);
 
     return data.data;
 }
@@ -48,7 +47,7 @@ export function renderListing(listing) {
     let media = "";
     if (listing.media.length === 0) {
         const img = document.createElement("img");
-        img.src = "../../../img/placeholder.jpg"; // Set the src to the placeholder image
+        img.src = "../../../img/placeholder.jpg";
         img.setAttribute("class", "d-block w-100 object-fit-cover");
         img.alt =
             "Placeholder image - a blank piece of paper on a leafy ground";
@@ -326,5 +325,4 @@ const bid = document.getElementById("bid-btn");
 bid.addEventListener("click", function (event) {
     const amount = document.getElementById("amount-input");
     bidOnListing(amount.value);
-    console.log(bidOnListing);
 });

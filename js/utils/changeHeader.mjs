@@ -24,7 +24,6 @@ export async function changeHeader() {
             navProfile.style.display = "block";
         }
     } else {
-        console.log(sellButton);
         if (loginButton) {
             loginButton.classList.remove("d-none");
         }

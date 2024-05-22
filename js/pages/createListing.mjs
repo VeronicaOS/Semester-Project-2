@@ -15,22 +15,39 @@ async function createListing(title, description, media, endDate) {
         "X-Noroff-API-Key": API_KEY,
     };
 
-    await fetch(url, {
-        headers: headers,
-        method: method,
-        body: JSON.stringify({
-            title: title,
-            description: description,
-            media: media,
-            endsAt: new Date(endDate),
-        }),
-    })
-        .then((response) => response.json())
-        .then(async (json) => {
-            console.log(json);
-            document.getElementById("listingForm").reset();
+    try {
+        const response = await fetch(url, {
+            headers: headers,
+            method: method,
+            body: JSON.stringify({
+                title: title,
+                description: description,
+                media: media,
+                endsAt: new Date(endDate),
+            }),
         });
-    console.log(media);
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert("Your listing was successfully created.");
+            document.getElementById("listingForm").reset();
+            return;
+        }
+
+        if (response.status === 500) {
+            return alert(
+                "There is a problem on our end. Please try again later."
+            );
+        }
+
+        if (response.status === 400) {
+            return alert("Please fill out the form correctly");
+        }
+    } catch (error) {
+        console.error(error);
+        return alert("An unexpected error occurred. Please try again later.");
+    }
 }
 
 const publish = document.getElementById("publish-btn");
@@ -58,5 +75,4 @@ publish.addEventListener("click", function (event) {
 
     const endDate = document.getElementById("end-date").value;
     createListing(title, description, media, endDate);
-    console.log(createListing);
 });

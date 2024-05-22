@@ -59,22 +59,37 @@ async function changeAvatar(mediaUrl) {
         "X-Noroff-API-Key": API_KEY,
     };
 
-    await fetch(url, {
-        headers: headers,
-        method: method,
-        body: JSON.stringify({
-            avatar: {
-                url: mediaUrl,
-                alt: "",
-            },
-        }),
-    })
-        .then((response) => response.json())
-        .then(async (json) => {
-            console.log(json);
-            document.getElementById("avatar-form").reset();
-            return json;
+    try {
+        const response = await fetch(url, {
+            headers: headers,
+            method: method,
+            body: JSON.stringify({
+                avatar: {
+                    url: mediaUrl,
+                    alt: "",
+                },
+            }),
         });
+
+        if (response.status === 500) {
+            return alert(
+                "There is a problem on our end. Please try again later."
+            );
+        }
+
+        if (response.status === 400) {
+            return alert(
+                "Please make sure the image URL is working and publicly accessible."
+            );
+        }
+
+        const json = await response.json();
+        document.getElementById("avatar-form").reset();
+        return json;
+    } catch (error) {
+        console.error(error);
+        showMsg("An unexpected error occurred. Please try again later.");
+    }
 }
 
 const publish = document.getElementById("save-avatar");
