@@ -5,11 +5,11 @@ const navName = document.getElementById("nav-name");
 const navImage = document.getElementById("nav-img");
 const sellButton = document.getElementById("sell-btn");
 const sellNav = document.getElementById("sell-nav");
-const navSell = document.getElementById("nav-sell")
+const navSell = document.getElementById("nav-sell");
 
 export async function changeHeader() {
-    const token =  localStorage.getItem("token");
-    const profileData =  localStorage.getItem("profile");
+    const token = localStorage.getItem("token");
+    const profileData = localStorage.getItem("profile");
     const profile = JSON.parse(profileData);
     if (token && profile) {
         navName.textContent = profile.name;
@@ -35,7 +35,8 @@ export async function changeHeader() {
         }
         if (sellNav) {
             sellNav.style.display = "none";
-        }if (navSell) {
+        }
+        if (navSell) {
             navSell.style.display = "none";
         }
         if (navProfile) {
