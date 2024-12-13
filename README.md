@@ -55,7 +55,7 @@ To run the app do the following:
 
 ## Contributing
 
-If you would like to contrubute to my project please make sure to create a new branch, push changes and open a pull request so I can review the code.
+If you would like to contribute to my project please make sure to create a new branch, push changes and open a pull request so I can review the code.
 
 ## Contact
 
