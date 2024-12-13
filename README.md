@@ -1,20 +1,18 @@
 # Semester-Project-2
 
-<img width="1440" alt="Screenshot 2024-05-14 at 05 50 03" src="https://github.com/VeronicaOS/Semester-Project-2/assets/126082037/838ebd67-1a10-4c24-bfc5-984534c142d6">
-
-
+<img width="1072" alt="Bidstorm" src="https://github.com/user-attachments/assets/551c22ac-4397-469c-beab-510851104f6b" />
 
 # BidStorm
 
-For this project I was tasked to create a blog site for an auction site and choose the design myself.
+For this project I was tasked to create an auction site and choose the design myself.
 
 ## Description
 
-This was the second project exam a Noroff and the goal was to take all the skills learned throughout the last few semesters to create this website. I started off with the design in Figma and then I made the blog site using HTML, SCSS, Bootstrap and JavaScript.
+This was the second semester project at Noroff and the goal was to take all the skills learned throughout the last few semesters to create this website. I started off with the design in Figma and then I made the blog site using HTML, SCSS, Bootstrap and JavaScript.
 
 ## Brief
 
-An auction site is looking to launch a website where users can add items to be bid on and bid on items other users have put up for auction.
+An auction site is looking to launch a website where users can add items to be bid on, and bid on items other users have put up for auction.
 
 When a new user joins the website, they are given 1000 credits to use on the site. They can get credits by selling items and use credit by buying items. Non-registered users can search through the listings, but only registered users can make bids on listings.
 
@@ -55,11 +53,10 @@ To run the app do the following:
 
 2. Click the Go Live button
 
+## Contributing
+
+If you would like to contrubute to my project please make sure to create a new branch, push changes and open a pull request so I can review the code.
 
 ## Contact
 
-My email address:
-
-```bash
-verols51029@stud.noroff.no
-```
+[My LinkedIn page](https://www.linkedin.com/in/veronica-olsen-svensson-b4750b337/)
