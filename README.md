@@ -1,6 +1,6 @@
 # Semester-Project-2
 
-<img width="1072" alt="Bidstorm" src="https://github.com/user-attachments/assets/551c22ac-4397-469c-beab-510851104f6b" />
+<img width="1068" alt="Bidstorm" src="https://github.com/user-attachments/assets/04b3950a-79c5-4b14-a9cf-b706b5f30e39" />
 
 # BidStorm
 
